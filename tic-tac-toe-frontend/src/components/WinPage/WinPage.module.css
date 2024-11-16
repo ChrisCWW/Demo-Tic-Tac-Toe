@@ -1,0 +1,87 @@
+@keyframes blur {
+    from {
+        backdrop-filter: blur(0);
+    }
+}
+
+.win {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(max(1.6vw, 1.2vh));
+    animation: blur 0.4s;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 6vh;
+}
+
+.winner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 4vh;
+}
+
+.icon {
+    width: max(10vw, 10vh);
+    height: max(10vw, 10vh);
+    min-width: 40px;
+    min-height: 40px;
+    background-color: var(--background);
+    border: max(2px, min(2vw, 0.8vh)) solid var(--border);
+    border-radius: min(3vw, 1.5vh);
+    padding: min(0.6vw, 0.6vh);
+}
+
+.winner p {
+    color: crimson;
+    font-size: max(32px, min(16vw, 8vh));
+    font-weight: bold;
+    text-shadow: 0 0 min(2vw, 2vh) rgb(198, 121, 136);
+}
+
+.btnsView {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4vh;
+}
+.btnsView button {
+    width: 35vh;
+    height: 12vh;
+    max-width: 70vw;
+    max-height: 24vw;  
+    background-color: var(--button);
+    border: min(1.8vw, 0.8vh) solid var(--border);
+    border-radius: min(2.6vw, 1.6vh);
+    color: var(--foreground);
+    font-size: max(16px, min(6vw, 3.5vh));
+    font-weight: 600;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+@media (hover: hover) {
+    .btnsView button:hover {
+        transform: scale(1.1);
+    }
+    .btnsView button:active {
+        transform: scale(0.9);
+    }
+}
+
+@media (hover: none) {
+    .btnsView button:active {
+        transform: scale(0.8);
+    }
+}
