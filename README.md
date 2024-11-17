@@ -3,7 +3,7 @@ A simple Tic-Tac-Toe game designed for both local and network play. Enjoy classi
 
 ## Table of Contents  
 - [Getting Started](#getting-started)  
-- [Play with friends](#play-with-friends)  
+- [Play with Friends Across Devices](#play-with-friends-across-devices)  
 - [Screenshots](#screenshots)  
 - [Tech Stack](#tech-stack)  
 
@@ -12,58 +12,43 @@ This project is Dockerized for quick and easy setup. Follow these steps:
 
 1. **Install Docker**: Refer to the official [Docker Installation Guide](https://docs.docker.com/engine/install/).  
 
-2. **Build and Run the Application**:  
+2. **Build and Run the Application**:
 ```bash
 docker compose build
 docker compose up
 ```
 
-3. **DONE**
+3. **Go to the [Web Server](http://localhost:3000) and Enjoy Your Game!**
 
+## Run Server Independently
 If you prefer running the `frontend` and `backend` servers independently, refer to the steps below.
 
-**Run Frontend Server**
+**Frontend Server**
 ```bash
-# Navigate to frontend folder
 cd tic-tac-toe-frontend
-
-# Install dependencies and build
 npm install
 npm run build
-
-# Copy public and static folders to standalone folder
 cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/
-
-# Start server
 npm run start
 ```
 
-**Run Backend Server**
+**Backend Server**
 ```bash
-# Navigate to backend folder
 cd tic-tac-toe-backend
-
-# Install dependencies
 npm install
-
-# Start backend server
 npm start
 ```
 
-## Play with Friends
-1. Ensure both devices and the host are on the same network.
-2. Go to http://${HOST_IP_ADRESS}:3000 in browser.
-3. Challenge your friends to a match and enjoy the game!
+## Play with Friends Across Devices
+1. Before run the application, open a file `tic-tac-toe-frontend` > `.env.local`, then change `SERVER_URL` to your host ip address.
+
+2. Ensure both devices and the host are on the same network.
+3. Go to http://`HOST_IP_ADDRESS`:3000 in browser.
+4. Challenge your friends to a match and enjoy the game!
 
 ## Screenshots
-<p style='display: flex; column-gap: 8px'>
-<video height="300" style='border-radius: 4px' autoplay>
-<source src='assets/screenshots/screenshot_p1.mov' />
-</video>
-<video height="300" style='border-radius: 4px' autoplay>
-<source src='assets/screenshots/screenshot_p2.mov' />
-</video>
-</p>
+![p1](previews/screenshot_p1.gif)
+![p2](previews/screenshot_p2.gif)
 
 ## Tech Stack
 - **Frontend**: Next.js, React, TypeScript, HTML, CSS
