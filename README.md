@@ -18,44 +18,33 @@ docker compose build
 docker compose up
 ```
 
-If you prefer running the frontend and backend servers independently, refer to the steps below.
+
+**If you prefer running the `frontend` and `backend` servers independently, refer to the steps below.**
 
 **Frontend Server**
-
-1. Navigate to `tic-tac-toe-frontend` folder:
 ```bash
+# Navigate to tic-tac-toe-frontend folder
 cd tic-tac-toe-frontend
-```
-2. Install dependencies and build:
-```bash
+# Install dependencies and build
 npm install
 npm run build
-```
-3. Copy `public` and `static` folders to `standalone` folder
-```bash
+# Copy public and static folders to standalone folder
 cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/
-```
-4. Start frontend server
-```bash
+# Start server
 npm run start
 ```
 
 **Backend Server**
-
-1. Navigate to `tic-tac-toe-backend` folder:
 ```bash
+# Navigate to tic-tac-toe-backend folder:
 cd tic-tac-toe-backend
-```
-2. Install dependencies:
-```bash
+# Install dependencies
 npm install
-```
-3. Start backend server:
-```bash
+# Start backend server
 npm start
 ```
 
-## Play with friends
+## Play with Friends
 1. Check the host's IP address.
 2. Go to http://${HOST_IP_ADRESS}:3000 in browser.
 3. Challenge your friends to a match and enjoy the game!
