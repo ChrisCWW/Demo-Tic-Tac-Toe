@@ -1,15 +1,10 @@
 'use client';
 
-import { io, Socket } from 'socket.io-client';
+import { io } from 'socket.io-client';
 
-let socketIO: Socket;
+let socket = io(`${process.env.SERVER_URL}`, {
+  autoConnect: true,
+  reconnection: true,
+});
 
-export const SocketIO = () => {  
-  if (!socketIO) {
-    socketIO = io(`${process.env.SERVER_URL}`, {
-      autoConnect: true,
-      reconnection: true,
-    });
-  }
-  return socketIO;
-}
+export default socket;

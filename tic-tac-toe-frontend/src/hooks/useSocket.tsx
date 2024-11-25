@@ -1,35 +1,32 @@
 'use client';
 
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { Socket } from "socket.io-client";
-import { SocketIO } from '@/app/socket';
-import { updateIsConnect } from "@/lib/store/features/IndexSlice";
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import socketIO from '@/app/socket';
+import { updateConnection } from '@/lib/store/features/IndexSlice';
 
 export default function useSocket() {
-    
-    const dispatch = useDispatch();
-    const [socket, setSocket] = useState<Socket>();
+  const dispatch = useDispatch();
+  const [socket, setSocket] = useState<typeof socketIO>();
 
-    useEffect(() => {
-        const socketIO = SocketIO();
-        setSocket(socketIO);
+  useEffect(() => {
+    setSocket(socketIO);
 
-        function onConnect() {
-            dispatch(updateIsConnect({ connect: true, uid: socketIO.id }));
-        }
-        function onDisconnect() {
-            dispatch(updateIsConnect({ connect: false }));
-        }
+    function onConnect() {
+      dispatch(updateConnection({ connect: true, uid: socketIO.id }));
+    }
+    function onDisconnect() {
+      dispatch(updateConnection({ connect: false }));
+    }
 
-        socketIO.on('connect', onConnect);
-        socketIO.on('disconnect', onDisconnect);
+    socketIO.on('connect', onConnect);
+    socketIO.on('disconnect', onDisconnect);
 
-        return () => {
-            socketIO.off('connect', onConnect);
-            socketIO.off('disconnect', onDisconnect);
-        }
-    }, []);
+    return () => {
+      socketIO.off('connect', onConnect);
+      socketIO.off('disconnect', onDisconnect);
+    };
+  }, []);
 
-    return socket;
+  return socket;
 }
