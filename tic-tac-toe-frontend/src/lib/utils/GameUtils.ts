@@ -5,6 +5,14 @@ export const initialGameBoard = (boxCount: number = 3): GameBoard => {
   return Array(boxCount).fill(Array(boxCount).fill(0));
 }
 
+export const calCameraPosition = (boxSize: number, boxGap: number, fov: number, boxCount: number = 3) => {
+  const boardSize = (boxSize + boxGap) * boxCount + boxGap;
+  const x = (boardSize - boxSize) / 2;
+  const y = (boardSize - boxSize) / 2;
+  const z = boardSize / 2 / Math.tan(((fov / 2) * Math.PI) / 180) + boxSize + boxGap * 1.5;
+  return new THREE.Vector3(x, y, z);
+}
+
 export const cameraPos = (boardSize: number, boxSize: number, boxTotal: number, fov: number) => {
     const x = (boardSize - boxSize) / 2;
     const y = (boardSize - boxSize) / 2;
@@ -101,15 +109,11 @@ export function whoIsWinner(board: GameBoard, boxCount: number) {
   return winner;
 }
 
-function checkWinPattern(array: number[]){
-  if (array && array.every((value) => value === 1)) {
-    return 1;
-  }
-  if (array && array.every((value) => value === 2)) {
-    return 2;
-  } else {
-    return 0;
-  }
+export function checkWinPattern(array: number[]){
+  if (!array.length) return 0;
+  if (array.every((value) => value === 1)) return 1;
+  else if (array.every((value) => value === 2)) return 2;
+  else return 0;
 }
 
 export function isMyTurn(mode: GameMode, turn: number, players?: string[], uid?: string) {

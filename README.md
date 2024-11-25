@@ -51,7 +51,7 @@ npm start
 ![p2](previews/screenshot_p2.gif)
 
 ## Tech Stack
-- **Frontend**: Next.js, React, TypeScript, HTML, CSS
+- **Frontend**: Next.js, React, Three.js, TypeScript, HTML, CSS
 - **Backend**: Node.js, Express.js, TypeScript
 - **Networking**: Socket.IO for real-time multiplayer functionality
 - **Tools**: Docker and Docker Compose for seamless deployment
