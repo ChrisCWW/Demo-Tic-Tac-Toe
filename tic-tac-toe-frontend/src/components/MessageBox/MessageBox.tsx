@@ -24,7 +24,7 @@ function MessageBox({
       <div className={styles.content}>
         <p>{message}</p>
         <div className={styles.btnsView}>
-          <button onClick={cancel}>{ cancelText ?? 'Cancel' }</button>
+          <button onClick={cancel}>{ cancelText || 'Cancel' }</button>
           <button onClick={button.action}>{button.name}</button>
         </div>
       </div>

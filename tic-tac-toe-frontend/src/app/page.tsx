@@ -5,12 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import Loading from "@/components/Loading/Loading";
 import useSocket from "@/hooks/useSocket";
-import { startLocalGame, startNetworkGame } from "@/lib/store/features/GameSlice";
 import { RootState } from "@/lib/store/store";
+import { startLocalGame, startNetworkGame } from "@/lib/store/features/GameSlice";
 import styles from "./page.module.css";
 
 export default function Home() {
-
   const socket = useSocket();
   const router = useRouter();
   const dispatch = useDispatch();
@@ -20,10 +19,10 @@ export default function Home() {
 
   const toggleMatch = (isMatch: boolean) => {
     if (isMatch) {
-      socket?.emit('ttt-match');  
+      socket.emit('ttt-match');  
       setMatching(true);
     } else {
-      socket?.emit('ttt-leave');  
+      socket.emit('ttt-leave');  
       setMatching(false);
     }
   }
@@ -34,8 +33,6 @@ export default function Home() {
   }
 
   useEffect(() => {
-    if (!socket) return;
-
     function startNetwork(data: { rid: string, players: string[] }) {
       const { rid, players } = data;
       dispatch(startNetworkGame({ rid, players }));
@@ -63,6 +60,7 @@ export default function Home() {
         Match
         <div className={`${styles.online} ${isConnect && styles.on}`}></div>
       </button>
+      
       { matching && <Loading text="Matching" dismiss={() => toggleMatch(false)} /> }
     </div>
   );

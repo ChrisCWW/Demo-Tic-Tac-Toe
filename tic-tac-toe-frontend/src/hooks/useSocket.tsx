@@ -7,24 +7,22 @@ import { updateConnection } from '@/lib/store/features/IndexSlice';
 
 export default function useSocket() {
   const dispatch = useDispatch();
-  const [socket, setSocket] = useState<typeof socketIO>();
+  const [socket] = useState(socketIO);
 
   useEffect(() => {
-    setSocket(socketIO);
-
     function onConnect() {
-      dispatch(updateConnection({ connect: true, uid: socketIO.id }));
+      dispatch(updateConnection({ connect: true, uid: socket.id }));
     }
     function onDisconnect() {
       dispatch(updateConnection({ connect: false }));
     }
 
-    socketIO.on('connect', onConnect);
-    socketIO.on('disconnect', onDisconnect);
+    socket.on('connect', onConnect);
+    socket.on('disconnect', onDisconnect);
 
     return () => {
-      socketIO.off('connect', onConnect);
-      socketIO.off('disconnect', onDisconnect);
+      socket.off('connect', onConnect);
+      socket.off('disconnect', onDisconnect);
     };
   }, []);
 

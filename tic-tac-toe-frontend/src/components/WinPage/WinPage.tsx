@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { images } from '@/lib/utils/assets';
 import styles from './WinPage.module.css';
 
 function WinPage({ winner, restart}: { winner: number, restart: () => void }) {
@@ -16,8 +17,8 @@ function WinPage({ winner, restart}: { winner: number, restart: () => void }) {
 	  		  <p>Winner</p>
 	  		  <Image
 	  		    className={`${styles.icon}`}
-	  		    src={winner === 1 ? '/images/circle.png' : '/images/cross.png'}
-	  		    alt=""
+	  		    src={winner === 1 ? images.circle : images.cross}
+	  		    alt={`${winner === 1 ? 'Player 1 - circle' : 'Player 2 - cross'}`}
 	  		    width={50}
 	  		    height={50}
 	  		  />
@@ -28,14 +29,14 @@ function WinPage({ winner, restart}: { winner: number, restart: () => void }) {
 	  		  <div className={styles.draw}>
 	  		    <Image
 	  		  	className={`${styles.icon}`}
-	  		  	src={'/images/circle.png'}
+	  		  	src={images.circle}
 	  		  	alt=""
 	  		  	width={50}
 	  		  	height={50}
 	  		    />
 	  		    <Image
 	  		  	className={`${styles.icon}`}
-	  		  	src={'/images/cross.png'}
+	  		  	src={images.cross}
 	  		  	alt=""
 	  		  	width={50}
 	  		  	height={50}

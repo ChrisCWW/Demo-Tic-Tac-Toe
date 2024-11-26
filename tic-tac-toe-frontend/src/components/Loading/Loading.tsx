@@ -1,7 +1,7 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import styles from './Loading.module.css';
 
-function Loading({text, dismiss }: { text?: string, dismiss?: () => void }) {
+function Loading({ text, dismiss }: { text?: string, dismiss?: () => void }) {
 
   const clickBackground = () => {
     if (dismiss) dismiss();
@@ -18,7 +18,6 @@ function Loading({text, dismiss }: { text?: string, dismiss?: () => void }) {
       onMouseDown={stopPropagation}
       onMouseMove={stopPropagation}
       onTouchStart={stopPropagation}
-      onTouchMove={stopPropagation}
     >
       <div className={styles.loading}>
         <p>

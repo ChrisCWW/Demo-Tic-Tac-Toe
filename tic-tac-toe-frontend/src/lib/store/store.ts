@@ -6,7 +6,7 @@ export const makeStore = () => {
   return configureStore({
     reducer: {
       index: indexReducer,
-      game: gameReducer
+      game: gameReducer,
     },
   });
 };

@@ -1,8 +1,10 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import StoreProvider from "./StoreProvider";
-import Header from "@/components/Header/Header";
-import "@/styles/globals.css";
+import type { Metadata } from 'next';
+import Head from 'next/head';
+import localFont from'next/font/local';
+import StoreProvider from '@/app/StoreProvider';
+import Header from '@/components/Header/Header';
+import { images } from '@/lib/utils/assets';
+import '@/styles/globals.css';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,6 +29,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        {
+          Object.values(images).map((imagePath, idx) => (
+            <link key={idx} rel="preload" as="image" href={imagePath} />
+          ))
+        }
+      </Head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Header />
         <StoreProvider>{children}</StoreProvider>
